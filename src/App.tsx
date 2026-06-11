@@ -1,4 +1,6 @@
 import { Routes, Route, useParams, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import { Analytics } from '@vercel/analytics/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TrainMap } from './components/map/TrainMap'
 import { SearchBar } from './components/ui/SearchBar'
@@ -44,8 +46,17 @@ function MapLayout() {
   const selectedTrainNum = trainNum ?? null
   const selectedTrain = trainNum ? trains.find(t => t.trainNum === trainNum) ?? null : null
 
+  const pageTitle = selectedTrain
+    ? `${selectedTrain.routeName} #${selectedTrain.trainNum} — Amtrakr`
+    : station
+    ? `${station.name} — Amtrakr`
+    : 'Live Map — Amtrakr'
+
   return (
     <div className="flex w-full h-full overflow-hidden">
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
       {/* Map — fills remaining width, narrows when panel opens */}
       <div className="flex-1 relative overflow-hidden min-w-0">
         <TrainMap selectedTrainNum={selectedTrainNum} />
@@ -130,6 +141,7 @@ export default function App() {
           }
         />
       </Routes>
+      <Analytics />
     </div>
   )
 }

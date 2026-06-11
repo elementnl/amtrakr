@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /map
+
+Sitemap: https://amtrakr.com/sitemap.xml
