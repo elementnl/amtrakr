@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bg: oklch(97.5% 0.007 72);
+  --color-surface: oklch(95% 0.008 72);
+  --color-surface-raised: oklch(93% 0.009 72);
+  --color-border: oklch(88% 0.007 72);
+  --color-ink: oklch(16% 0.008 72);
+  --color-ink-dim: oklch(55% 0.006 72);
+  --color-ink-faint: oklch(75% 0.005 72);
+  --color-navy: oklch(30% 0.11 255);
+  --color-navy-light: oklch(42% 0.10 255);
+  --color-status-green: oklch(56% 0.10 152);
+  --color-status-amber: oklch(68% 0.14 65);
+  --color-status-rose: oklch(54% 0.13 20);
+  --color-status-green-bg: oklch(94% 0.04 152);
+  --color-status-amber-bg: oklch(94% 0.05 65);
+  --color-status-rose-bg: oklch(94% 0.04 20);
+
+  /* Typography */
+  --font-serif: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Switzer", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: oklch(97.5% 0.007 72);
+  color: oklch(16% 0.008 72);
+  font-family: "Switzer", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* MapLibre overrides */
+.maplibregl-map {
+  font-family: "Switzer", system-ui, sans-serif;
+}
+
+.maplibregl-ctrl-attrib {
+  font-size: 11px;
+  background: oklch(97.5% 0.007 72 / 0.85) !important;
+}
+
+.maplibregl-ctrl-group {
+  border-radius: 10px !important;
+  box-shadow: 0 2px 12px oklch(16% 0.008 72 / 0.10) !important;
+  overflow: hidden;
+}
+
+.maplibregl-ctrl-group button {
+  background-color: oklch(97.5% 0.007 72) !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background-color: oklch(95% 0.008 72) !important;
+}
+
+/* ── Train pulse ring (MapLibre custom HTML marker) ──────────────────────── */
+@keyframes trainPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(26, 51, 102, 0.50); }
+  70%  { box-shadow: 0 0 0 18px rgba(26, 51, 102, 0); }
+  100% { box-shadow: 0 0 0 18px rgba(26, 51, 102, 0); }
+}
+
+.train-pulse-ring {
+  animation: trainPulse 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  border-radius: 50%;
+  pointer-events: none;
+}
